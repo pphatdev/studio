@@ -1,18 +1,18 @@
 module.exports = {
     apps: [
         {
-            name: 'studio.pphat.top:3102',
-            port: 3102,
+            name: 'studio.pphat.top:3104',
+            port: 3104,
             exec_mode: 'cluster',
             instances: 'max',
             script: './.output/server/index.mjs',
             env: {
                 NODE_ENV: 'production',
-                PORT: 3102,
+                PORT: 3104,
             },
             env_development: {
                 NODE_ENV: 'development',
-                PORT: 3102,
+                PORT: 3104,
             },
             // Logs
             error_file: './logs/error.log',
