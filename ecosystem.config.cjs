@@ -10,10 +10,10 @@ module.exports = {
                 NODE_ENV: 'production',
                 PORT: 3104,
             },
-            env_development: {
-                NODE_ENV: 'development',
-                PORT: 3104,
-            },
+            // env_development: {
+            //     NODE_ENV: 'development',
+            //     PORT: 3104,
+            // },
             // Logs
             error_file: './logs/error.log',
             out_file: './logs/output.log',
