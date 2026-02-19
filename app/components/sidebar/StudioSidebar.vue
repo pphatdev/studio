@@ -18,8 +18,14 @@ const framePositionOptions = [
   { value: "out", label: "Outside" },
 ];
 
-// Apply theme colors when theme changes
-const applyTheme = (themeName: string) => {
+// Username change handler
+const onUsernameChange = (event: Event) => {
+  stats.value.username = (event.target as HTMLInputElement).value;
+};
+
+// Apply theme colors on change
+const onThemeChange = (event: Event) => {
+  const themeName = (event.target as HTMLSelectElement).value;
   if (themeName && themes[themeName]) {
     const theme = themes[themeName];
     stats.value.bgColor = theme.bgColor;
@@ -29,41 +35,25 @@ const applyTheme = (themeName: string) => {
   }
 };
 
-// Watch for theme changes
-watch(() => stats.value.theme, (newTheme) => {
-  if (newTheme) {
-    applyTheme(newTheme);
-  }
-});
-
 // Color picker helpers - type="color" requires valid hex format
-const bgColorPicker = computed({
-  get: () => stats.value.bgColor || "#ffffff",
-  set: (val: string) => {
-    stats.value.bgColor = val;
-  },
-});
+const bgColorPicker = computed(() => stats.value.bgColor || "#ffffff");
+const borderColorPicker = computed(() => stats.value.borderColor || "#e4e2e2");
+const textColorPicker = computed(() => stats.value.textColor || "#333333");
+const titleColorPicker = computed(() => stats.value.titleColor || "#2f80ed");
 
-const borderColorPicker = computed({
-  get: () => stats.value.borderColor || "#e4e2e2",
-  set: (val: string) => {
-    stats.value.borderColor = val;
-  },
-});
-
-const textColorPicker = computed({
-  get: () => stats.value.textColor || "#333333",
-  set: (val: string) => {
-    stats.value.textColor = val;
-  },
-});
-
-const titleColorPicker = computed({
-  get: () => stats.value.titleColor || "#2f80ed",
-  set: (val: string) => {
-    stats.value.titleColor = val;
-  },
-});
+// Color change handlers
+const onBgColorChange = (event: Event) => {
+  stats.value.bgColor = (event.target as HTMLInputElement).value;
+};
+const onBorderColorChange = (event: Event) => {
+  stats.value.borderColor = (event.target as HTMLInputElement).value;
+};
+const onTextColorChange = (event: Event) => {
+  stats.value.textColor = (event.target as HTMLInputElement).value;
+};
+const onTitleColorChange = (event: Event) => {
+  stats.value.titleColor = (event.target as HTMLInputElement).value;
+};
 </script>
 
 <template>
@@ -90,7 +80,8 @@ const titleColorPicker = computed({
           >Username</label
         >
         <input
-          v-model="stats.username"
+          :value="stats.username"
+          @change="onUsernameChange"
           type="text"
           placeholder="Enter GitHub username"
           class="form-select"
@@ -189,7 +180,7 @@ const titleColorPicker = computed({
 
         <div class="flex flex-col gap-2">
           <label class="text-sm text-muted-foreground">Theme</label>
-          <select v-model="stats.theme" class="form-select">
+          <select v-model="stats.theme" @change="onThemeChange" class="form-select">
             <option value="">Custom</option>
             <option v-for="name in themeNames" :key="name" :value="name">
               {{ name }}
@@ -207,7 +198,8 @@ const titleColorPicker = computed({
               class="form-select"
             />
             <input
-              v-model="bgColorPicker"
+              :value="bgColorPicker"
+              @change="onBgColorChange"
               type="color"
               class="w-10 h-10 rounded-md border border-input cursor-pointer"
             />
@@ -224,7 +216,8 @@ const titleColorPicker = computed({
               class="form-select"
             />
             <input
-              v-model="borderColorPicker"
+              :value="borderColorPicker"
+              @change="onBorderColorChange"
               type="color"
               class="w-10 h-10 rounded-md border border-input cursor-pointer"
             />
@@ -241,7 +234,8 @@ const titleColorPicker = computed({
               class="form-select"
             />
             <input
-              v-model="textColorPicker"
+              :value="textColorPicker"
+              @change="onTextColorChange"
               type="color"
               class="w-10 h-10 rounded-md border border-input cursor-pointer"
             />
@@ -259,7 +253,8 @@ const titleColorPicker = computed({
               class="form-select"
             />
             <input
-              v-model="titleColorPicker"
+              :value="titleColorPicker"
+              @change="onTitleColorChange"
               type="color"
               id="titleColorPicker"
               class="w-10 h-10 rounded-md border border-input cursor-pointer"
