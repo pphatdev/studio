@@ -16,6 +16,7 @@ useSeoMeta({
 const route = useRoute();
 const { stats } = useStats();
 
+const selectedTemplate = useState<string>('selectedTemplate', () => 'stats');
 const zoom = ref(1);
 const previewRef = ref<{ resetPosition: () => void } | null>(null);
 const showUsernameModal = ref(false);
@@ -70,6 +71,11 @@ const submitUsername = () => {
   if (usernameInput.value.trim()) {
     stats.value.username = usernameInput.value.trim();
     celebrate();
+
+    const searchParams = new URLSearchParams()
+    searchParams.set('username', usernameInput.value.trim())
+    history.pushState(null, '', `?${searchParams.toString()}`)
+
     setTimeout(() => {
       showUsernameModal.value = false;
     }, 500);
@@ -103,7 +109,21 @@ onMounted(() => {
 
       <!-- Canvas Area -->
       <div class="flex-1 overflow-hidden">
-        <StudioStatsPreview ref="previewRef" v-model:zoom="zoom" />
+        <StudioStatsPreview
+          v-if="selectedTemplate === 'stats'"
+          ref="previewRef"
+          v-model:zoom="zoom"
+        />
+        <StudioLanguagesPreview
+          v-else-if="selectedTemplate === 'languages'"
+          ref="previewRef"
+          v-model:zoom="zoom"
+        />
+        <StudioGraphPreview
+          v-else-if="selectedTemplate === 'graph'"
+          ref="previewRef"
+          v-model:zoom="zoom"
+        />
       </div>
     </main>
 
