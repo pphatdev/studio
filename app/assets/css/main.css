@@ -109,6 +109,6 @@
     }
 
     .form-select {
-        @apply w-full px-3 py-2 text-sm bg-background border border-input rounded-md focus:outline-none transition-all ease-in-out duration-100 focus:ring-4 focus-within:border-ring focus:ring-ring/20 focus:ring-offset-0;
+        @apply w-full px-3 py-2 text-sm bg-background border border-input rounded-lg focus:outline-none transition-all ease-in-out duration-100 focus:ring-4 focus-within:border-ring focus:ring-ring/20 focus:ring-offset-0;
     }
 }

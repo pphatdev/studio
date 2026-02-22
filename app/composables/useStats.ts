@@ -11,6 +11,14 @@ export interface Stats {
   borderColor?: string;
   textColor?: string;
   titleColor?: string;
+  // Graph options
+  graph_theme?: string;
+  year?: string;
+  animate?: string;
+  size?: string;
+  show_title?: boolean;
+  show_total_contribution?: boolean;
+  show_background?: boolean;
 }
 
 export const useStats = () => {
@@ -27,6 +35,14 @@ export const useStats = () => {
     borderColor: '',
     textColor: '',
     titleColor: '',
+    // Graph options
+    graph_theme: 'aurora',
+    year: '',
+    animate: 'glow',
+    size: 'default',
+    show_title: true,
+    show_total_contribution: true,
+    show_background: true,
   }));
 
   const buildQueryString = computed(() => {
