@@ -8,7 +8,7 @@ const emit = defineEmits<{
     (e: 'update:zoom', value: number): void;
 }>();
 
-const { stats, buildQueryString } = useStats();
+const { stats, buildLanguagesQueryString, languagesUrl } = useStats();
 
 const isLoading = ref(true);
 const hasError = ref(false);
@@ -19,11 +19,6 @@ const copied = ref(false);
 const isDragging = ref(false);
 const position = ref({ x: 0, y: 0 });
 const dragStart = ref({ x: 0, y: 0 });
-
-// Build languages URL
-const languagesUrl = computed(() => {
-    return `https://stats.pphat.top/languages?${buildQueryString.value}`;
-});
 
 const handleLoad = () => {
     isLoading.value = false;

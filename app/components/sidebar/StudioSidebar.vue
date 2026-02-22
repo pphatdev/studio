@@ -15,6 +15,11 @@ const templateItems = [
     preview: '/template/stats.webp'
   },
   {
+    name: 'Languages',
+    type: 'languages',
+    preview: '/template/languages.webp'
+  },
+  {
     name: 'Graph',
     type: 'graph',
     preview: '/template/graph.webp'
@@ -188,6 +193,47 @@ const onTitleColorChange = (event: Event) => {
               class="w-4 h-4 rounded border-input text-primary focus:ring-ring" />
             <span class="text-sm text-sidebar-foreground">Show Background</span>
           </label>
+        </div>
+      </template>
+
+      <!-- Languages Options (only show when languages template is selected) -->
+      <template v-if="selectedTemplate === 'languages'">
+        <!-- Display Type -->
+        <div class="flex flex-col gap-2">
+          <label class="text-sm font-medium text-sidebar-foreground">Display Type</label>
+          <select v-model="stats.type" class="form-select">
+            <option value="card">Card</option>
+            <option value="pie">Pie Chart</option>
+          </select>
+        </div>
+
+        <!-- Display Options -->
+        <div class="space-y-3">
+          <h3 class="text-sm font-medium text-sidebar-foreground">
+            Display Options
+          </h3>
+
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input v-model="stats.show_info" type="checkbox"
+              class="w-4 h-4 rounded border-input text-primary focus:ring-ring" />
+            <span class="text-sm text-sidebar-foreground">Show Info</span>
+          </label>
+        </div>
+
+        <!-- Color Customization -->
+        <div class="space-y-3">
+          <h3 class="text-sm font-medium text-sidebar-foreground">Colors</h3>
+
+          <div class="flex flex-col gap-2">
+            <label class="text-sm text-muted-foreground">Theme</label>
+            <select v-model="stats.lang_theme" class="form-select">
+              <option value="">Custom</option>
+              <option v-for="name in themeNames" :key="name" :value="name">
+                {{ name }}
+              </option>
+            </select>
+          </div>
+
         </div>
       </template>
 

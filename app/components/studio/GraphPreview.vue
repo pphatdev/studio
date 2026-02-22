@@ -8,7 +8,7 @@ const emit = defineEmits<{
     (e: 'update:zoom', value: number): void;
 }>();
 
-const { stats } = useStats();
+const { stats, graphUrl } = useStats();
 
 const isLoading = ref(true);
 const hasError = ref(false);
@@ -19,65 +19,6 @@ const copied = ref(false);
 const isDragging = ref(false);
 const position = ref({ x: 0, y: 0 });
 const dragStart = ref({ x: 0, y: 0 });
-
-// Build graph URL
-const graphUrl = computed(() => {
-    const params = new URLSearchParams();
-
-    // Add username
-    if (stats.value.username) {
-        params.append('username', stats.value.username);
-    }
-
-    // Add graph-specific parameters
-    if (stats.value.graph_theme && stats.value.graph_theme !== 'aurora') {
-        params.append('theme', stats.value.graph_theme);
-    }
-
-    if (stats.value.year) {
-        params.append('year', stats.value.year);
-    }
-
-    if (stats.value.animate && stats.value.animate !== 'glow') {
-        params.append('animate', stats.value.animate);
-    }
-
-    if (stats.value.size && stats.value.size !== 'default') {
-        params.append('size', stats.value.size);
-    }
-
-    // Boolean options
-    if (stats.value.show_title === false) {
-        params.append('show_title', 'false');
-    }
-
-    if (stats.value.show_total_contribution === false) {
-        params.append('show_total_contribution', 'false');
-    }
-
-    if (stats.value.show_background === false) {
-        params.append('show_background', 'false');
-    }
-
-    // Color overrides
-    if (stats.value.bgColor) {
-        params.append('bgColor', stats.value.bgColor);
-    }
-
-    if (stats.value.borderColor) {
-        params.append('borderColor', stats.value.borderColor);
-    }
-
-    if (stats.value.textColor) {
-        params.append('textColor', stats.value.textColor);
-    }
-
-    if (stats.value.titleColor) {
-        params.append('titleColor', stats.value.titleColor);
-    }
-
-    return `https://stats.pphat.top/graph?${params.toString()}`;
-});
 
 const handleLoad = () => {
     isLoading.value = false;
