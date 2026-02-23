@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { ref, computed, watch, onMounted, onUnmounted } from "vue";
 import { useStats } from "../../composables/useStats";
+import IconCopy from "../icons/IconCopy.vue";
+import IconCheck from "../icons/IconCheck.vue";
+import IconSpinner from "../icons/IconSpinner.vue";
+import IconAlertCircle from "../icons/IconAlertCircle.vue";
+import Background from "../icons/background.vue";
 
-const props = defineProps<{
-    zoom: number;
-}>();
+const props = defineProps<{ zoom: number }>();
 
-const emit = defineEmits<{
-    (e: "resetPosition"): void;
-    (e: "update:zoom", value: number): void;
-}>();
+const emit = defineEmits<{ (e: "resetPosition"): void; (e: "update:zoom", value: number): void; }>();
 
 const { statsUrl, selectedTemplate, currentTemplate } = useStats();
 
@@ -116,9 +116,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <div
-        class="relative w-full h-full flex flex-col overflow-hidden bg-[#f8f8f8]"
-    >
+    <div class="relative w-full h-full flex flex-col overflow-hidden bg-[#f8f8f8]">
         <!-- URL Display -->
         <div
             class="p-2 bg-muted/50 border-b border-border text-xs text-muted-foreground flex items-center gap-2"
@@ -129,36 +127,8 @@ onUnmounted(() => {
                 class="shrink-0 p-1.5 rounded hover:bg-accent transition-colors cursor-pointer"
                 :title="copied ? 'Copied!' : 'Copy URL'"
             >
-                <svg
-                    v-if="!copied"
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                >
-                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-                    <path
-                        d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
-                    />
-                </svg>
-                <svg
-                    v-else
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="text-green-600"
-                >
-                    <path d="M20 6 9 17l-5-5" />
-                </svg>
+                <IconCopy v-if="!copied" />
+                <IconCheck v-else />
             </button>
         </div>
 
@@ -168,9 +138,7 @@ onUnmounted(() => {
             @wheel.prevent="handleWheel"
         >
             <!-- Grid Pattern Background -->
-            <div
-                class="absolute inset-0 bg-[radial-gradient(circle,#d1d1d1_1px,transparent_1px)] bg-size-[20px_20px]"
-            />
+            <Background/>
 
             <!-- Loading Indicator -->
             <div
@@ -178,25 +146,7 @@ onUnmounted(() => {
                 class="absolute inset-0 flex items-center justify-center z-10"
             >
                 <div class="flex items-center gap-2 text-muted-foreground">
-                    <svg
-                        class="animate-spin h-5 w-5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                    >
-                        <circle
-                            class="opacity-25"
-                            cx="12"
-                            cy="12"
-                            r="10"
-                            stroke="currentColor"
-                            stroke-width="4"
-                        ></circle>
-                        <path
-                            class="opacity-75"
-                            fill="currentColor"
-                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                        ></path>
-                    </svg>
+                    <IconSpinner width="20" height="20" />
                     <span class="text-sm">Loading preview...</span>
                 </div>
             </div>
@@ -207,21 +157,7 @@ onUnmounted(() => {
                 class="absolute inset-0 flex items-center justify-center z-10"
             >
                 <div class="text-center text-muted-foreground">
-                    <svg
-                        width="48"
-                        height="48"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="mx-auto mb-3 opacity-50"
-                    >
-                        <circle cx="12" cy="12" r="10" />
-                        <line x1="12" y1="8" x2="12" y2="12" />
-                        <line x1="12" y1="16" x2="12.01" y2="16" />
-                    </svg>
+                    <IconAlertCircle width="48" height="48" />
                     <p class="text-sm">Failed to load preview</p>
                     <p class="text-xs mt-1 mb-3">
                         Check the username and try again
