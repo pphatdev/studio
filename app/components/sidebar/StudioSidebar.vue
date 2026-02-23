@@ -5,6 +5,16 @@ import UsernameInput from "./UsernameInput.vue";
 import TemplatesSelection from "./TemplatesSelection.vue";
 import TemplateOptions from "./TemplateOptions.vue";
 
+// Props
+const props = defineProps<{
+    isOpen: boolean;
+}>();
+
+// Emits
+const emit = defineEmits<{
+    (e: 'close'): void;
+}>();
+
 const { stats, selectedTemplate, templates, currentTemplate } = useStats();
 
 // Get current template options
@@ -30,8 +40,22 @@ const onOptionChange = (name: string, value: any) => {
 
 <template>
     <aside
-        class="w-72 h-screen bg-sidebar-background border border-r flex flex-col overflow-hidden"
+        :class="[
+            'w-72 h-screen bg-background border border-r flex flex-col overflow-hidden',
+            'fixed inset-y-0 left-0 z-50 transform transition-transform duration-300',
+            props.isOpen ? 'translate-x-0' : '-translate-x-full',
+            'lg:relative lg:translate-x-0'
+        ]"
     >
+        <!-- Mobile Close Button -->
+        <button
+            @click="emit('close')"
+            class="lg:hidden absolute top-4 right-4 text-gray-400 hover:text-white z-10"
+            aria-label="Close sidebar"
+        >
+            <IconClose :width="16" :height="16" />
+        </button>
+
         <!-- Header -->
         <SidebarHeader />
 

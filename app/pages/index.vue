@@ -20,6 +20,15 @@ const previewRef = ref<{ resetPosition: () => void } | null>(null);
 const showUsernameModal = ref(false);
 const usernameInput = ref("");
 const isInitialized = ref(false);
+const isSidebarOpen = ref(false);
+
+const toggleSidebar = () => {
+    isSidebarOpen.value = !isSidebarOpen.value;
+};
+
+const closeSidebar = () => {
+    isSidebarOpen.value = false;
+};
 
 const resetZoom = () => {
     zoom.value = 1;
@@ -191,14 +200,30 @@ onMounted(async () => {
 
         <!-- Content (only show after initialization) -->
         <template v-if="isInitialized">
+            <!-- Mobile Overlay -->
+            <Transition
+                enter-active-class="transition-opacity duration-300 ease-out"
+                enter-from-class="opacity-0"
+                enter-to-class="opacity-100"
+                leave-active-class="transition-opacity duration-200 ease-in"
+                leave-from-class="opacity-100"
+                leave-to-class="opacity-0"
+            >
+                <div
+                    v-if="isSidebarOpen"
+                    class="fixed inset-0 bg-black/50 z-40 lg:hidden"
+                    @click="closeSidebar"
+                ></div>
+            </Transition>
+
             <!-- Sidebar -->
-            <SidebarStudioSidebar />
+            <SidebarStudioSidebar :isOpen="isSidebarOpen" @close="closeSidebar" />
 
             <!-- Main Content -->
             <main class="flex-1 flex flex-col overflow-hidden">
             <!-- Header -->
             <header
-                class="flex items-center justify-between px-6 min-h-12.5 py-2.5 border-b border-border"
+                class="flex items-center justify-between px-2 lg:px-6 min-h-12.5 border-b border-border"
                 :class="
                     selectedTemplate === 'stats'
                         ? 'bg-blue-50/30 dark:bg-blue-950/20'
@@ -207,8 +232,30 @@ onMounted(async () => {
                             : 'bg-green-50/30 dark:bg-green-950/20'
                 "
             >
-                <!-- Active Template Name -->
-                <div class="flex items-center gap-2">
+                <!-- Mobile Menu Toggle & Active Template Name -->
+                <div class="flex items-center gap-3">
+                    <!-- Hamburger Menu Button (Mobile Only) -->
+                    <button
+                        @click="toggleSidebar"
+                        class="lg:hidden p-2 rounded-xl cursor-pointer hover:bg-accent transition-colors"
+                        aria-label="Toggle sidebar"
+                    >
+                        <svg
+                            class="size-5 text-foreground"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"
+                            />
+                        </svg>
+                    </button>
+
+                    <!-- Active Template Name -->
                     <span class="text-sm font-semibold text-sidebar-foreground">
                         {{ currentTemplate?.title || "Stats" }} Preview
                     </span>
