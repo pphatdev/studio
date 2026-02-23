@@ -1,4 +1,5 @@
 import sidebarData from "~/utils/data.json";
+import { watch } from "vue";
 
 export interface Stats {
     username: string;
@@ -50,11 +51,50 @@ export const useStats = () => {
         return defaults;
     };
 
+    // Reset template-specific options to defaults
+    const resetTemplateOptions = (templateName: string) => {
+        const template = templates.find((t: any) => t.name === templateName);
+        if (!template) return;
+
+        template.options?.forEach((option: any) => {
+            if (option.value !== null && option.value !== undefined) {
+                if (Array.isArray(option.value)) {
+                    // For arrays, check if first element is an object
+                    if (
+                        typeof option.value[0] === "object" &&
+                        option.value[0]?.name
+                    ) {
+                        // Array of objects - use the name property
+                        stats.value[option.name] = option.value[0].name;
+                    } else {
+                        // Array of primitives - use first value
+                        stats.value[option.name] = option.value[0];
+                    }
+                } else if (
+                    typeof option.value === "object" &&
+                    !Array.isArray(option.value)
+                ) {
+                    // Single object value - use the name property
+                    if (option.value.name) {
+                        stats.value[option.name] = option.value.name;
+                    }
+                } else if (typeof option.value === "boolean") {
+                    stats.value[option.name] = option.value;
+                }
+            }
+        });
+    };
+
     const stats = useState<Stats>("stats", () => getDefaultStats());
     const selectedTemplate = useState<string>(
         "selectedTemplate",
         () => templates[0]?.name || "stats",
     );
+
+    // Reset template options when template changes
+    watch(selectedTemplate, (newTemplate) => {
+        resetTemplateOptions(newTemplate);
+    });
 
     // Get current template
     const currentTemplate = computed(() => {

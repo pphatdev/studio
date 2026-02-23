@@ -136,7 +136,7 @@ const onTemplateChange = (templateName: string) => {
                     :key="option.name"
                     class="flex flex-col gap-2"
                 >
-                    <!-- Select for array values -->
+                    <!-- Select for string array values -->
                     <template v-if="getInputType(option) === 'select'">
                         <label
                             class="text-sm font-medium text-sidebar-foreground"
@@ -151,6 +151,7 @@ const onTemplateChange = (templateName: string) => {
                                     ).value)
                             "
                             class="form-select"
+                            suppressHydrationWarning
                         >
                             <option
                                 v-for="val in option.value as string[]"
@@ -179,6 +180,7 @@ const onTemplateChange = (templateName: string) => {
                                     ).value)
                             "
                             class="form-select"
+                            suppressHydrationWarning
                         >
                             <option value="">Custom</option>
                             <option
@@ -204,6 +206,7 @@ const onTemplateChange = (templateName: string) => {
                                 "
                                 type="checkbox"
                                 class="w-4 h-4 rounded border-input text-primary focus:ring-ring"
+                                suppressHydrationWarning
                             />
                             <span class="text-sm text-sidebar-foreground">{{
                                 option.title
@@ -228,6 +231,7 @@ const onTemplateChange = (templateName: string) => {
                             type="text"
                             :placeholder="`Enter ${option.title.toLowerCase()}`"
                             class="form-select"
+                            suppressHydrationWarning
                         />
                     </template>
                 </div>

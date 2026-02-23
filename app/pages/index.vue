@@ -1,27 +1,25 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch, nextTick } from "vue";
 import confetti from "canvas-confetti";
 import { useStats } from "../composables/useStats";
 
 useSeoMeta({
     title: "GitHub Stats Studio - Create Beautiful Statistics Cards",
     ogTitle: "GitHub Stats Studio - Create Beautiful Statistics Cards",
-    description:
-        "Design and create stunning statistics cards for your projects with GitHub Stats Studio. Easy-to-use visual editor with real-time preview.",
-    ogDescription:
-        "Design and create stunning statistics cards for your projects with GitHub Stats Studio.",
-    ogImage:
-        "https://stats.pphat.top/stats?username=pphatdev&avatar_mode=radar&format=webp",
+    description: "Design and create stunning statistics cards for your projects with GitHub Stats Studio. Easy-to-use visual editor with real-time preview.",
+    ogDescription: "Design and create stunning statistics cards for your projects with GitHub Stats Studio.",
+    ogImage: "https://stats.pphat.top/stats?username=pphatdev&avatar_mode=radar&format=webp",
     twitterCard: "summary_large_image",
 });
 
 const route = useRoute();
-const { stats, selectedTemplate, currentTemplate } = useStats();
+const { stats, selectedTemplate, currentTemplate, buildQueryString } = useStats();
 
 const zoom = ref(1);
 const previewRef = ref<{ resetPosition: () => void } | null>(null);
 const showUsernameModal = ref(false);
 const usernameInput = ref("");
+const isInitialized = ref(false);
 
 const resetZoom = () => {
     zoom.value = 1;
@@ -83,24 +81,121 @@ const submitUsername = () => {
     }
 };
 
-// Check for username in URL params on mount
-onMounted(() => {
+// Update search params when template or stats change (only after initial load)
+watch(
+    [selectedTemplate, buildQueryString],
+    () => {
+        if (stats.value.username && isInitialized.value) {
+            const searchParams = new URLSearchParams();
+            searchParams.set("username", stats.value.username);
+
+            // Add template if not the default 'stats'
+            if (selectedTemplate.value !== "stats") {
+                searchParams.set("template", selectedTemplate.value);
+            }
+
+            // Add all option values for current template
+            currentTemplate.value?.options?.forEach((option: any) => {
+                const value = stats.value[option.name];
+                if (
+                    value !== undefined &&
+                    value !== null &&
+                    value !== "" &&
+                    value !== false
+                ) {
+                    searchParams.append(option.name, String(value));
+                }
+            });
+
+            history.pushState(null, "", `?${searchParams.toString()}`);
+        }
+    },
+    { deep: true },
+);
+
+// Check for username and template in URL params on mount
+onMounted(async () => {
     const usernameParam = route.query.username as string;
+    const templateParam = route.query.template as string;
+
+    // Load username
     if (usernameParam) {
         stats.value.username = usernameParam;
     } else if (!stats.value.username) {
         showUsernameModal.value = true;
     }
+
+    // Set template
+    if (templateParam) {
+        selectedTemplate.value = templateParam;
+    }
+
+    // Wait for template reactive effects to settle
+    await nextTick();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // Load option values from search params
+    currentTemplate.value?.options?.forEach((option: any) => {
+        const paramValue = route.query[option.name];
+        if (paramValue !== undefined && paramValue !== null) {
+            stats.value[option.name] = paramValue;
+        }
+    });
+
+    // Mark as initialized so watches will fire for subsequent changes
+    isInitialized.value = true;
 });
 </script>
 
 <template>
     <div class="flex h-screen overflow-hidden bg-background">
-        <!-- Sidebar -->
-        <SidebarStudioSidebar />
+        <!-- Loading Overlay -->
+        <Teleport to="body">
+            <Transition
+                enter-active-class="transition-opacity duration-300 ease-out"
+                enter-from-class="opacity-0"
+                enter-to-class="opacity-100"
+                leave-active-class="transition-opacity duration-300 ease-in"
+                leave-from-class="opacity-100"
+                leave-to-class="opacity-0"
+            >
+                <div
+                    v-if="!isInitialized"
+                    class="fixed inset-0 z-100 flex items-center justify-center bg-background"
+                >
+                    <div class="flex flex-col items-center gap-4">
+                        <svg
+                            class="animate-spin h-8 w-8 text-primary"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                        >
+                            <circle
+                                class="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                stroke-width="4"
+                            ></circle>
+                            <path
+                                class="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                            ></path>
+                        </svg>
+                        <p class="text-sm text-muted-foreground">Loading studio...</p>
+                    </div>
+                </div>
+            </Transition>
+        </Teleport>
 
-        <!-- Main Content -->
-        <main class="flex-1 flex flex-col overflow-hidden">
+        <!-- Content (only show after initialization) -->
+        <template v-if="isInitialized">
+            <!-- Sidebar -->
+            <SidebarStudioSidebar />
+
+            <!-- Main Content -->
+            <main class="flex-1 flex flex-col overflow-hidden">
             <!-- Header with Zoom Controls -->
             <header
                 class="flex items-center justify-between px-6 py-3 border-b border-border"
@@ -108,8 +203,8 @@ onMounted(() => {
                     selectedTemplate === 'stats'
                         ? 'bg-blue-50/30 dark:bg-blue-950/20'
                         : selectedTemplate === 'languages'
-                          ? 'bg-purple-50/30 dark:bg-purple-950/20'
-                          : 'bg-green-50/30 dark:bg-green-950/20'
+                            ? 'bg-purple-50/30 dark:bg-purple-950/20'
+                            : 'bg-green-50/30 dark:bg-green-950/20'
                 "
             >
                 <!-- Active Template Name -->
@@ -123,8 +218,8 @@ onMounted(() => {
                             selectedTemplate === 'stats'
                                 ? 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-200'
                                 : selectedTemplate === 'languages'
-                                  ? 'bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-200'
-                                  : 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200'
+                                    ? 'bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-200'
+                                    : 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200'
                         "
                     >
                         {{ selectedTemplate }}
@@ -136,17 +231,12 @@ onMounted(() => {
             <!-- Canvas Area -->
             <div
                 class="flex-1 overflow-hidden"
-                :class="
-                    selectedTemplate === 'stats'
-                        ? 'bg-blue-50/5'
-                        : selectedTemplate === 'languages'
-                          ? 'bg-purple-50/5'
-                          : 'bg-green-50/5'
-                "
+                :class="selectedTemplate === 'stats' ? 'bg-blue-50/5' : selectedTemplate === 'languages' ? 'bg-purple-50/5' : 'bg-green-50/5'"
             >
                 <StudioPreview ref="previewRef" v-model:zoom="zoom" />
             </div>
-        </main>
+            </main>
+        </template>
 
         <!-- Username Modal -->
         <Teleport to="body">

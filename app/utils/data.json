@@ -29,6 +29,7 @@
                                 "icon": null,
                                 "value": [
                                     {
+                                        "title": "Default",
                                         "name": "default",
                                         "titleColor": "#00c8ff",
                                         "textColor": "#ffffff",
@@ -88,6 +89,7 @@
                                 "icon": null,
                                 "value": [
                                     {
+                                        "title": "Default",
                                         "name": "default",
                                         "titleColor": "#00c8ff",
                                         "textColor": "#ffffff",
@@ -110,18 +112,14 @@
                                 "name": "theme",
                                 "icon": null,
                                 "value": [
-                                    { "name": "aurora", "icon": "" },
-                                    { "name": "matrix", "icon": "" },
-                                    { "name": "inferno", "icon": "" },
-                                    { "name": "ocean", "icon": "" },
-                                    { "name": "aurora", "icon": "" },
-                                    { "name": "matrix", "icon": "" },
-                                    { "name": "inferno", "icon": "" },
-                                    { "name": "ocean", "icon": "" },
-                                    { "name": "neon", "icon": "" },
-                                    { "name": "solar", "icon": "" },
-                                    { "name": "galaxy", "icon": "" },
-                                    { "name": "github-dark", "icon": "" }
+                                    { "title": "🌌 Aurora", "name": "aurora" },
+                                    { "title": "💚 Matrix", "name": "matrix" },
+                                    { "title": "🔥 Inferno", "name": "inferno" },
+                                    { "title": "🌊 Ocean", "name": "ocean" },
+                                    { "title": "💜 Neon", "name": "neon" },
+                                    { "title": "☀️ Solar", "name": "solar" },
+                                    { "title": "🌠 Galaxy", "name": "galaxy" },
+                                    { "title": "🌑 GitHub Dark", "name": "github-dark" }
                                 ]
                             },
                             {

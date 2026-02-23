@@ -22,8 +22,7 @@ export default defineNuxtConfig({
                 },
                 {
                     name: "description",
-                    content:
-                        "Design and create stunning statistics cards for your projects with Stats Studio. Easy-to-use visual editor with real-time preview.",
+                    content: "Design and create stunning statistics cards for your projects with Stats Studio. Easy-to-use visual editor with real-time preview.",
                 },
                 { name: "theme-color", content: "#000000" },
                 // Open Graph
@@ -35,13 +34,11 @@ export default defineNuxtConfig({
                 },
                 {
                     property: "og:description",
-                    content:
-                        "Design and create stunning statistics cards for your projects with Stats Studio. Easy-to-use visual editor with real-time preview.",
+                    content: "Design and create stunning statistics cards for your projects with Stats Studio. Easy-to-use visual editor with real-time preview.",
                 },
                 {
                     property: "og:image",
-                    content:
-                        "https://stats.pphat.top/stats?username=pphatdev&avatar_mode=radar&format=webp",
+                    content: "https://stats.pphat.top/stats?username=pphatdev&avatar_mode=radar&format=webp",
                 },
                 // Twitter Card
                 { name: "twitter:card", content: "summary_large_image" },
@@ -51,13 +48,11 @@ export default defineNuxtConfig({
                 },
                 {
                     name: "twitter:description",
-                    content:
-                        "Design and create stunning statistics cards for your projects with Stats Studio.",
+                    content: "Design and create stunning statistics cards for your projects with Stats Studio.",
                 },
                 {
                     name: "twitter:image",
-                    content:
-                        "https://stats.pphat.top/stats?username=pphatdev&avatar_mode=radar&format=webp",
+                    content: "https://stats.pphat.top/stats?username=pphatdev&avatar_mode=radar&format=webp",
                 },
             ],
             link: [
