@@ -4,6 +4,7 @@ import SidebarHeader from "./SidebarHeader.vue";
 import UsernameInput from "./UsernameInput.vue";
 import TemplatesSelection from "./TemplatesSelection.vue";
 import TemplateOptions from "./TemplateOptions.vue";
+import IconX from "../icons/IconX.vue";
 
 // Props
 const props = defineProps<{
@@ -53,7 +54,7 @@ const onOptionChange = (name: string, value: any) => {
             class="lg:hidden absolute top-4 right-4 text-gray-400 hover:text-white z-10"
             aria-label="Close sidebar"
         >
-            <IconClose :width="16" :height="16" />
+            <IconX :width="16" :height="16" />
         </button>
 
         <!-- Header -->
