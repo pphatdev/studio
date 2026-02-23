@@ -42,7 +42,7 @@ const onOptionChange = (name: string, value: any) => {
 <template>
     <aside
         :class="[
-            'w-72 h-screen bg-background border border-r flex flex-col overflow-hidden',
+            'w-72 h-screen bg-background flex flex-col overflow-hidden',
             'fixed inset-y-0 left-0 z-50 transform transition-transform duration-300',
             props.isOpen ? 'translate-x-0' : '-translate-x-full',
             'lg:relative lg:translate-x-0'

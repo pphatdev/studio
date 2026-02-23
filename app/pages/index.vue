@@ -2,8 +2,6 @@
 import { ref, onMounted, watch, nextTick } from "vue";
 import confetti from "canvas-confetti";
 import { useStats } from "../composables/useStats";
-import IconBurger from "../components/icons/IconBurger.vue";
-import IconSpinner from "../components/icons/IconSpinner.vue";
 
 useSeoMeta({
     title: "GitHub Stats Studio - Create Beautiful Statistics Cards",
@@ -175,7 +173,25 @@ onMounted(async () => {
                     class="fixed inset-0 z-100 flex items-center justify-center bg-background"
                 >
                     <div class="flex flex-col items-center gap-4">
-                        <IconSpinner :width="32" :height="32" class-name="text-primary" />
+                        <svg
+                            class="animate-spin h-8 w-8 text-primary"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                        >
+                            <circle
+                                class="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                stroke-width="4"
+                            ></circle>
+                            <path
+                                class="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                            ></path>
+                        </svg>
                         <p class="text-sm text-muted-foreground">Loading studio...</p>
                     </div>
                 </div>
@@ -224,7 +240,19 @@ onMounted(async () => {
                         class="lg:hidden p-2 rounded-xl cursor-pointer hover:bg-accent transition-colors"
                         aria-label="Toggle sidebar"
                     >
-                        <IconBurger :width="20" :height="20" class-name="text-foreground" />
+                        <svg
+                            class="size-5 text-foreground"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"
+                            />
+                        </svg>
                     </button>
 
                     <!-- Active Template Name -->
