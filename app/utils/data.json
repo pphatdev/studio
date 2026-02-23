@@ -1,0 +1,169 @@
+{
+    "sidebar": {
+        "name": "Sidebar",
+        "statsUrl": "http://stats.pphat.top",
+        "menu": [
+            {
+                "title": "Github Username",
+                "name": "username"
+            },
+            {
+                "title": "Templates",
+                "name": "templates",
+                "items": [
+                    {
+                        "title": "Stats",
+                        "name": "stats",
+                        "prefix": "stats",
+                        "icon": "/template/stats.webp",
+                        "options": [
+                            {
+                                "title": "Avatar Mode",
+                                "name": "avatar_mode",
+                                "icon": null,
+                                "value": ["none", "radar"]
+                            },
+                            {
+                                "title": "Theme",
+                                "name": "theme",
+                                "icon": null,
+                                "value": [
+                                    {
+                                        "name": "default",
+                                        "titleColor": "#00c8ff",
+                                        "textColor": "#ffffff",
+                                        "iconColor": "#00c8ff",
+                                        "bgColor": "#0a0e27",
+                                        "borderColor": "#888888"
+                                    }
+                                ]
+                            },
+                            {
+                                "title": "Border Mode",
+                                "name": "data_border_style",
+                                "icon": null,
+                                "value": ["frame", "solid"]
+                            },
+                            {
+                                "title": "Hide Rank",
+                                "name": "hide_rank",
+                                "icon": null,
+                                "value": false
+                            },
+                            {
+                                "title": "Hide Title",
+                                "name": "hide_title",
+                                "icon": null,
+                                "value": false
+                            },
+                            {
+                                "title": "Custom Title",
+                                "name": "custom_title",
+                                "icon": null,
+                                "value": null
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Languages",
+                        "name": "languages",
+                        "prefix": "languages",
+                        "icon": "/template/languages.webp",
+                        "options": [
+                            {
+                                "title": "View Type",
+                                "name": "type",
+                                "icon": null,
+                                "value": ["card", "pie"]
+                            },
+                            {
+                                "title": "Show Info",
+                                "name": "show_info",
+                                "icon": null,
+                                "value": true
+                            },
+                            {
+                                "title": "Theme",
+                                "name": "theme",
+                                "icon": null,
+                                "value": [
+                                    {
+                                        "name": "default",
+                                        "titleColor": "#00c8ff",
+                                        "textColor": "#ffffff",
+                                        "iconColor": "#00c8ff",
+                                        "bgColor": "#0a0e27",
+                                        "borderColor": "#888888"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Graph",
+                        "name": "graph",
+                        "prefix": "graph",
+                        "icon": "/template/graph.webp",
+                        "options": [
+                            {
+                                "title": "Themes",
+                                "name": "theme",
+                                "icon": null,
+                                "value": [
+                                    { "name": "aurora", "icon": "" },
+                                    { "name": "matrix", "icon": "" },
+                                    { "name": "inferno", "icon": "" },
+                                    { "name": "ocean", "icon": "" },
+                                    { "name": "aurora", "icon": "" },
+                                    { "name": "matrix", "icon": "" },
+                                    { "name": "inferno", "icon": "" },
+                                    { "name": "ocean", "icon": "" },
+                                    { "name": "neon", "icon": "" },
+                                    { "name": "solar", "icon": "" },
+                                    { "name": "galaxy", "icon": "" },
+                                    { "name": "github-dark", "icon": "" }
+                                ]
+                            },
+                            {
+                                "title": "Size",
+                                "name": "size",
+                                "icon": null,
+                                "value": ["default", "small", "medium", "large"]
+                            },
+                            {
+                                "title": "Show Title",
+                                "name": "show_title",
+                                "icon": null,
+                                "value": true
+                            },
+                            {
+                                "title": "Show Total Contribution",
+                                "name": "show_total_contribution",
+                                "icon": null,
+                                "value": true
+                            },
+                            {
+                                "title": "Show Background",
+                                "name": "show_background",
+                                "icon": null,
+                                "value": true
+                            },
+                            {
+                                "title": "Year",
+                                "name": "year",
+                                "icon": null,
+                                "value": "last"
+                            },
+                            {
+                                "title": "Animate Modes",
+                                "name": "animate",
+                                "icon": null,
+                                "value": ["glow", "wave", "pulse", "none"]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
