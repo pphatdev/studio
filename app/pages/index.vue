@@ -259,18 +259,6 @@ onMounted(async () => {
                     <span class="text-sm font-semibold text-sidebar-foreground">
                         {{ currentTemplate?.title || "Stats" }} Preview
                     </span>
-                    <!-- <span
-                        class="text-xs px-3 py-1.5 rounded-full font-medium"
-                        :class="
-                            selectedTemplate === 'stats'
-                                ? 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-200'
-                                : selectedTemplate === 'languages'
-                                    ? 'bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-200'
-                                    : 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200'
-                        "
-                    >
-                        {{ selectedTemplate }}
-                    </span> -->
                 </div>
             </header>
 

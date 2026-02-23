@@ -33,7 +33,7 @@ const emit = defineEmits<{
                 v-for="template in templates"
                 :key="template.name"
                 @click="emit('select', template.name)"
-                class="flex flex-col items-center gap-2 cursor-pointer text-xs font-medium rounded-xl transition-all border-2 relative"
+                class="flex flex-col items-center gap-2 cursor-pointer overflow-clip text-xs font-medium rounded-xl transition-all border-2 relative"
                 :class="
                     selectedTemplate === template.name
                         ? 'bg-primary text-primary-foreground shadow-sm border-primary'
@@ -44,15 +44,8 @@ const emit = defineEmits<{
                     v-if="template.icon"
                     :src="template.icon"
                     :alt="template.title"
-                    class="w-full h-auto rounded-lg"
+                    class="w-full h-auto rounded-xl"
                 />
-                <!-- Active Badge -->
-                <span
-                    v-if="selectedTemplate === template.name"
-                    class="text-xs font-bold uppercase tracking-wide text-primary-foreground"
-                >
-                    Active
-                </span>
                 <span
                     v-else
                     class="text-xs font-medium text-muted-foreground"
@@ -62,7 +55,7 @@ const emit = defineEmits<{
                 <!-- Check icon for selected template -->
                 <div
                     v-if="selectedTemplate === template.name"
-                    class="absolute top-0.5 left-0.5 bg-primary rounded-lg p-1 shadow-md"
+                    class="absolute top-0 left-0 bg-primary rounded-lg rounded-t-none rounded-l-none p-1 shadow-md"
                 >
                     <IconCheck width="12" height="12" class-name="text-primary-foreground" />
                 </div>
