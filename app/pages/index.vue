@@ -198,7 +198,7 @@ onMounted(async () => {
             <main class="flex-1 flex flex-col overflow-hidden">
             <!-- Header -->
             <header
-                class="flex items-center justify-between px-6 py-2.5 border-b border-border"
+                class="flex items-center justify-between px-6 min-h-12.5 py-2.5 border-b border-border"
                 :class="
                     selectedTemplate === 'stats'
                         ? 'bg-blue-50/30 dark:bg-blue-950/20'
@@ -212,7 +212,7 @@ onMounted(async () => {
                     <span class="text-sm font-semibold text-sidebar-foreground">
                         {{ currentTemplate?.title || "Stats" }} Preview
                     </span>
-                    <span
+                    <!-- <span
                         class="text-xs px-3 py-1.5 rounded-full font-medium"
                         :class="
                             selectedTemplate === 'stats'
@@ -223,7 +223,7 @@ onMounted(async () => {
                         "
                     >
                         {{ selectedTemplate }}
-                    </span>
+                    </span> -->
                 </div>
             </header>
 

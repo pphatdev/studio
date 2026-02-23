@@ -72,7 +72,7 @@ const getInputType = (option: any): string => {
                     :key="(val as any).name"
                     :value="(val as any).name"
                 >
-                    {{ (val as any).name }}
+                    {{ (val as any).title }}
                 </option>
             </select>
         </template>
