@@ -5,11 +5,12 @@ import URLDisplay from "./URLDisplay.vue";
 import LoadingIndicator from "./LoadingIndicator.vue";
 import ErrorState from "./ErrorState.vue";
 import PreviewCanvas from "./PreviewCanvas.vue";
+import ZoomControls from "./ZoomControls.vue";
 import Background from "../icons/background.vue";
 
 const props = defineProps<{ zoom: number }>();
 
-const emit = defineEmits<{ (e: "resetPosition"): void; (e: "update:zoom", value: number): void; }>();
+const emit = defineEmits<{ (e: "resetPosition"): void; (e: "update:zoom", value: number): void; (e: "reset"): void; }>();
 
 const { statsUrl, selectedTemplate, currentTemplate } = useStats();
 
@@ -73,6 +74,11 @@ const resetPosition = () => {
     position.value = { x: 0, y: 0 };
 };
 
+// Reset zoom and position
+const handleReset = () => {
+    emit("reset");
+};
+
 // Wheel zoom handler
 const handleWheel = (e: WheelEvent) => {
     e.preventDefault();
@@ -131,6 +137,11 @@ onUnmounted(() => {
         >
             <!-- Grid Pattern Background -->
             <Background/>
+
+            <!-- Zoom Controls -->
+            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-10">
+                <ZoomControls :zoom="zoom" @update:zoom="(val) => emit('update:zoom', val)" @reset="handleReset" />
+            </div>
 
             <!-- Loading Indicator -->
             <LoadingIndicator v-if="isLoading" />

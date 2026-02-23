@@ -196,9 +196,9 @@ onMounted(async () => {
 
             <!-- Main Content -->
             <main class="flex-1 flex flex-col overflow-hidden">
-            <!-- Header with Zoom Controls -->
+            <!-- Header -->
             <header
-                class="flex items-center justify-between px-6 py-3 border-b border-border"
+                class="flex items-center justify-between px-6 py-2.5 border-b border-border"
                 :class="
                     selectedTemplate === 'stats'
                         ? 'bg-blue-50/30 dark:bg-blue-950/20'
@@ -225,7 +225,6 @@ onMounted(async () => {
                         {{ selectedTemplate }}
                     </span>
                 </div>
-                <StudioZoomControls v-model:zoom="zoom" @reset="resetZoom" />
             </header>
 
             <!-- Canvas Area -->
@@ -233,7 +232,7 @@ onMounted(async () => {
                 class="flex-1 overflow-hidden"
                 :class="selectedTemplate === 'stats' ? 'bg-blue-50/5' : selectedTemplate === 'languages' ? 'bg-purple-50/5' : 'bg-green-50/5'"
             >
-                <StudioPreview ref="previewRef" v-model:zoom="zoom" />
+                <StudioPreview ref="previewRef" v-model:zoom="zoom" @reset="resetZoom" />
             </div>
             </main>
         </template>
