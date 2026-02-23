@@ -27,7 +27,7 @@ const zoomPercentage = computed(() => Math.round(props.zoom * 100));
 
 <template>
     <div
-        class="flex items-center justify-end gap-1 bg-card border border-border rounded-lg p-1 shadow-sm"
+        class="flex items-center justify-end gap-1 bg-card border rounded-lg p-1"
     >
         <!-- Zoom Out -->
         <button
