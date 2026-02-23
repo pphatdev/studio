@@ -1,146 +1,117 @@
+import sidebarData from "~/utils/data.json";
+
 export interface Stats {
-  username: string;
-  hide_title?: boolean;
-  hide_rank?: boolean;
-  custom_title?: string;
-  avatar_mode?: 'none' | 'radar';
-  data_border_style?: 'solid' | 'frame';
-  data_border_frame_position?: 'in' | 'out';
-  theme?: string;
-  bgColor?: string;
-  borderColor?: string;
-  textColor?: string;
-  titleColor?: string;
-  // Graph options
-  graph_theme?: string;
-  year?: string;
-  animate?: string;
-  size?: string;
-  show_title?: boolean;
-  show_total_contribution?: boolean;
-  show_background?: boolean;
-  // Languages options
-  lang_theme?: string;
-  show_info?: boolean;
-  type?: 'card' | 'pie';
-  lang_bgColor?: string;
-  lang_borderColor?: string;
-  lang_textColor?: string;
-  lang_titleColor?: string;
+    username: string;
+    [key: string]: any;
 }
 
 export const useStats = () => {
-  const stats = useState<Stats>('stats', () => ({
-    username: '',
-    hide_title: false,
-    hide_rank: false,
-    custom_title: '',
-    avatar_mode: 'radar',
-    data_border_style: 'solid',
-    data_border_frame_position: 'in',
-    theme: '',
-    bgColor: '',
-    borderColor: '',
-    textColor: '',
-    titleColor: '',
-    // Graph options
-    graph_theme: 'aurora',
-    year: '',
-    animate: 'glow',
-    size: 'default',
-    show_title: true,
-    show_total_contribution: true,
-    show_background: true,
-    // Languages options
-    lang_theme: '',
-    show_info: true,
-    type: 'card',
-    lang_bgColor: '',
-    lang_borderColor: '',
-    lang_textColor: '',
-    lang_titleColor: '',
-  }));
+    const { sidebar } = sidebarData;
+    const statsBaseUrl = sidebar.statsUrl;
 
-  const buildQueryString = computed(() => {
-    const params = new URLSearchParams();
+    // Get all templates from data.json
+    const templatesMenu = sidebar.menu.find((m: any) => m.name === "templates");
+    const templates = templatesMenu?.items || [];
 
-    Object.entries(stats.value).forEach(([key, value]) => {
-      if (value !== undefined && value !== null && value !== '' && value !== false) {
-        params.append(key, String(value));
-      }
+    // Initialize stats object with default values from data.json
+    const getDefaultStats = (): Stats => {
+        const defaults: Stats = { username: "" };
+
+        templates.forEach((template: any) => {
+            template.options?.forEach((option: any) => {
+                if (option.value !== null && option.value !== undefined) {
+                    if (Array.isArray(option.value)) {
+                        // For arrays, check if first element is an object
+                        if (
+                            typeof option.value[0] === "object" &&
+                            option.value[0]?.name
+                        ) {
+                            // Array of objects - use the name property
+                            defaults[option.name] = option.value[0].name;
+                        } else {
+                            // Array of primitives - use first value
+                            defaults[option.name] = option.value[0];
+                        }
+                    } else if (
+                        typeof option.value === "object" &&
+                        !Array.isArray(option.value)
+                    ) {
+                        // Single object value - use the name property
+                        if (option.value.name) {
+                            defaults[option.name] = option.value.name;
+                        }
+                    } else if (typeof option.value === "boolean") {
+                        defaults[option.name] = option.value;
+                    }
+                }
+            });
+        });
+
+        return defaults;
+    };
+
+    const stats = useState<Stats>("stats", () => getDefaultStats());
+    const selectedTemplate = useState<string>(
+        "selectedTemplate",
+        () => templates[0]?.name || "stats",
+    );
+
+    // Get current template
+    const currentTemplate = computed(() => {
+        return templates.find((t: any) => t.name === selectedTemplate.value);
     });
 
-    return params.toString();
-  });
+    // Build query string dynamically based on selected template and options
+    const buildQueryString = computed(() => {
+        const params = new URLSearchParams();
+        const template = currentTemplate.value;
 
-  // Build query string for stats endpoint
-  const buildStatsQueryString = computed(() => {
-    const params = new URLSearchParams();
-    const statsKeys = ['username', 'hide_title', 'hide_rank', 'custom_title', 'avatar_mode',
-      'data_border_style', 'data_border_frame_position', 'theme',
-      'bgColor', 'borderColor', 'textColor', 'titleColor'];
+        if (!template) return "";
 
-    Object.entries(stats.value).forEach(([key, value]) => {
-      if (statsKeys.includes(key) && value !== undefined && value !== null && value !== '' && value !== false) {
-        params.append(key, String(value));
-      }
+        // Add username
+        if (stats.value.username) {
+            params.append("username", stats.value.username);
+        }
+
+        // Add all option values for current template
+        template.options?.forEach((option: any) => {
+            const value = stats.value[option.name];
+
+            // Skip empty, null, undefined, and false values
+            if (
+                value !== undefined &&
+                value !== null &&
+                value !== "" &&
+                value !== false
+            ) {
+                params.append(option.name, String(value));
+            }
+        });
+
+        return params.toString();
     });
 
-    return params.toString();
-  });
+    // Build complete URL based on selected template
+    const statsUrl = computed(() => {
+        const template = currentTemplate.value;
+        if (!template || !stats.value.username) return statsBaseUrl;
 
-  // Build query string for languages endpoint
-  const buildLanguagesQueryString = computed(() => {
-    const params = new URLSearchParams();
-    params.append('username', stats.value.username);
+        const baseUrl = statsBaseUrl.endsWith("/")
+            ? statsBaseUrl.slice(0, -1)
+            : statsBaseUrl;
+        const prefix = template.prefix;
+        const queryString = buildQueryString.value;
 
-    if (stats.value.lang_theme) params.append('theme', stats.value.lang_theme);
-    if (stats.value.show_info !== undefined) params.append('show_info', String(stats.value.show_info));
-    if (stats.value.type && stats.value.type !== 'card') params.append('type', stats.value.type);
-    if (stats.value.lang_bgColor) params.append('bgColor', stats.value.lang_bgColor);
-    if (stats.value.lang_borderColor) params.append('borderColor', stats.value.lang_borderColor);
-    if (stats.value.lang_textColor) params.append('textColor', stats.value.lang_textColor);
-    if (stats.value.lang_titleColor) params.append('titleColor', stats.value.lang_titleColor);
+        return `${baseUrl}/${prefix}?${queryString}`;
+    });
 
-    return params.toString();
-  });
-
-  // Build query string for graph endpoint
-  const buildGraphQueryString = computed(() => {
-    const params = new URLSearchParams();
-    params.append('username', stats.value.username);
-
-    if (stats.value.graph_theme) params.append('theme', stats.value.graph_theme);
-    if (stats.value.year) params.append('year', stats.value.year);
-    if (stats.value.animate && stats.value.animate !== 'glow') params.append('animate', stats.value.animate);
-    if (stats.value.size && stats.value.size !== 'default') params.append('size', stats.value.size);
-    if (stats.value.show_title !== undefined) params.append('show_title', String(stats.value.show_title));
-    if (stats.value.show_total_contribution !== undefined) params.append('show_total_contribution', String(stats.value.show_total_contribution));
-    if (stats.value.show_background !== undefined) params.append('show_background', String(stats.value.show_background));
-
-    return params.toString();
-  });
-
-  const statsUrl = computed(() => {
-    return `https://stats.pphat.top/stats?${buildStatsQueryString.value}`;
-  });
-
-  const languagesUrl = computed(() => {
-    return `https://stats.pphat.top/languages?${buildLanguagesQueryString.value}`;
-  });
-
-  const graphUrl = computed(() => {
-    return `https://stats.pphat.top/graph?${buildGraphQueryString.value}`;
-  });
-
-  return {
-    stats,
-    buildQueryString,
-    buildStatsQueryString,
-    buildLanguagesQueryString,
-    buildGraphQueryString,
-    statsUrl,
-    languagesUrl,
-    graphUrl,
-  };
+    return {
+        stats,
+        selectedTemplate,
+        templates,
+        currentTemplate,
+        statsBaseUrl,
+        buildQueryString,
+        statsUrl,
+    };
 };
