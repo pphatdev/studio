@@ -62,9 +62,9 @@ const emit = defineEmits<{
                 <!-- Check icon for selected template -->
                 <div
                     v-if="selectedTemplate === template.name"
-                    class="absolute top-0.5 left-0.5 bg-primary text-primary-foreground rounded-lg p-1 shadow-md"
+                    class="absolute top-0.5 left-0.5 bg-primary rounded-lg p-1 shadow-md"
                 >
-                    <IconCheck width="12" height="12" />
+                    <IconCheck width="12" height="12" class-name="text-primary-foreground" />
                 </div>
             </button>
         </div>

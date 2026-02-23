@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { cn } from '../../utils/utils';
 defineProps<{
     width?: number | string;
     height?: number | string;
+    className?: string;
 }>();
 </script>
 
@@ -15,7 +17,7 @@ defineProps<{
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
-        class="text-green-600"
+        :class="cn('text-green-600', className)"
     >
         <path d="M20 6 9 17l-5-5" />
     </svg>

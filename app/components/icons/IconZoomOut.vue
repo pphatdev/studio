@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { cn } from '../../utils/utils';
 defineProps<{
     width?: number | string;
     height?: number | string;
+    className?: string;
 }>();
 </script>
 
@@ -11,6 +13,7 @@ defineProps<{
         :height="height || 16"
         viewBox="0 0 24 24"
         fill="none"
+        :class="cn(className)"
         stroke="currentColor"
         stroke-width="2"
         stroke-linecap="round"

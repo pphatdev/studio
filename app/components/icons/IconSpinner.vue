@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { cn } from '../../utils/utils';
 defineProps<{
     width?: number | string;
     height?: number | string;
+    className?: string;
 }>();
 </script>
 
@@ -9,7 +11,7 @@ defineProps<{
     <svg
         :width="width || 20"
         :height="height || 20"
-        class="animate-spin"
+        :class="cn('animate-spin', className)"
         fill="none"
         viewBox="0 0 24 24"
     >

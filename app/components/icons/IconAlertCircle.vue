@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { cn } from '../../utils/utils';
 defineProps<{
     width?: number | string;
     height?: number | string;
+    className?: string;
 }>();
 </script>
 
@@ -15,7 +17,7 @@ defineProps<{
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"
-        class="mx-auto mb-3 opacity-50"
+        :class="cn('mx-auto mb-3 opacity-50', className)"
     >
         <circle cx="12" cy="12" r="10" />
         <line x1="12" y1="8" x2="12" y2="12" />
