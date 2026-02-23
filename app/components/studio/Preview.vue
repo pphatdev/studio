@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, computed, watch, onMounted, onUnmounted } from "vue";
 import { useStats } from "../../composables/useStats";
-import IconCopy from "../icons/IconCopy.vue";
-import IconCheck from "../icons/IconCheck.vue";
-import IconSpinner from "../icons/IconSpinner.vue";
-import IconAlertCircle from "../icons/IconAlertCircle.vue";
+import URLDisplay from "./URLDisplay.vue";
+import LoadingIndicator from "./LoadingIndicator.vue";
+import ErrorState from "./ErrorState.vue";
+import PreviewCanvas from "./PreviewCanvas.vue";
 import Background from "../icons/background.vue";
 
 const props = defineProps<{ zoom: number }>();
@@ -118,19 +118,11 @@ onUnmounted(() => {
 <template>
     <div class="relative w-full h-full flex flex-col overflow-hidden bg-[#f8f8f8]">
         <!-- URL Display -->
-        <div
-            class="p-2 bg-muted/50 border-b border-border text-xs text-muted-foreground flex items-center gap-2"
-        >
-            <span class="font-mono flex-1 truncate">{{ statsUrl }}</span>
-            <button
-                @click="copyUrl"
-                class="shrink-0 p-1.5 rounded hover:bg-accent transition-colors cursor-pointer"
-                :title="copied ? 'Copied!' : 'Copy URL'"
-            >
-                <IconCopy v-if="!copied" />
-                <IconCheck v-else />
-            </button>
-        </div>
+        <URLDisplay
+            :url="statsUrl"
+            :copied="copied"
+            @copy="copyUrl"
+        />
 
         <!-- Canvas Area -->
         <div
@@ -141,64 +133,26 @@ onUnmounted(() => {
             <Background/>
 
             <!-- Loading Indicator -->
-            <div
-                v-if="isLoading"
-                class="absolute inset-0 flex items-center justify-center z-10"
-            >
-                <div class="flex items-center gap-2 text-muted-foreground">
-                    <IconSpinner width="20" height="20" />
-                    <span class="text-sm">Loading preview...</span>
-                </div>
-            </div>
+            <LoadingIndicator v-if="isLoading" />
 
             <!-- Error State -->
-            <div
+            <ErrorState
                 v-if="hasError && !isLoading"
-                class="absolute inset-0 flex items-center justify-center z-10"
-            >
-                <div class="text-center text-muted-foreground">
-                    <IconAlertCircle width="48" height="48" />
-                    <p class="text-sm">Failed to load preview</p>
-                    <p class="text-xs mt-1 mb-3">
-                        Check the username and try again
-                    </p>
-                    <button
-                        @click="retry"
-                        class="px-3 py-1.5 text-xs bg-primary text-primary-foreground rounded-md hover:opacity-90 transition-opacity"
-                    >
-                        Retry
-                    </button>
-                </div>
-            </div>
+                @retry="retry"
+            />
 
             <!-- SVG Preview -->
-            <div
-                class="relative z-0 select-none"
-                :class="{
-                    'cursor-grabbing': isDragging,
-                    'cursor-grab': !isDragging,
-                    'transition-transform duration-200 ease-out': !isDragging,
-                }"
-                :style="{
-                    transform: `translate(${position.x}px, ${position.y}px) scale(${zoom})`,
-                }"
-                @mousedown.prevent="startDrag"
-            >
-                <img
-                    :key="imageKey"
-                    :src="statsUrl"
-                    :alt="`GitHub ${currentTemplate?.title || 'Stats'} Preview`"
-                    class="max-w-none shadow-lg rounded-lg pointer-events-none"
-                    referrerpolicy="no-referrer"
-                    @load="handleLoad"
-                    @error="handleError"
-                    onerror="
-                        this.onerror = null;
-                        this.style.display = 'none';
-                    "
-                    draggable="false"
-                />
-            </div>
+            <PreviewCanvas
+                :isDragging="isDragging"
+                :zoom="zoom"
+                :position="position"
+                :imageKey="imageKey"
+                :imageUrl="statsUrl"
+                :imageAlt="`GitHub ${currentTemplate?.title || 'Stats'} Preview`"
+                @startDrag="startDrag"
+                @load="handleLoad"
+                @error="handleError"
+            />
         </div>
     </div>
 </template>
