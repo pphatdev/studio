@@ -1,13 +1,13 @@
 module.exports = {
     apps: [
         {
-            name: 'studio.pphat.top:3104',
+            name: "studio.pphat.top:3104",
             port: 3104,
-            exec_mode: 'cluster',
-            instances: 'max',
-            script: './.output/server/index.mjs',
+            exec_mode: "cluster",
+            instances: "max",
+            script: "./.output/server/index.mjs",
             env: {
-                NODE_ENV: 'production',
+                NODE_ENV: "production",
                 PORT: 3104,
             },
             // env_development: {
@@ -15,17 +15,17 @@ module.exports = {
             //     PORT: 3104,
             // },
             // Logs
-            error_file: './logs/error.log',
-            out_file: './logs/output.log',
-            log_date_format: 'YYYY-MM-DD HH:mm:ss',
+            error_file: "./logs/error.log",
+            out_file: "./logs/output.log",
+            log_date_format: "YYYY-MM-DD HH:mm:ss",
             merge_logs: true,
             // Restart policy
             max_restarts: 10,
-            min_uptime: '10s',
-            max_memory_restart: '500M',
+            min_uptime: "10s",
+            max_memory_restart: "500M",
             // Watch (disabled for production)
             watch: false,
-            ignore_watch: ['node_modules', 'logs', '.nuxt', '.output'],
+            ignore_watch: ["node_modules", "logs", ".nuxt", ".output"],
         },
     ],
 };

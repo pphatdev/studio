@@ -42,8 +42,8 @@
     --color-sidebar-foreground: var(--sidebar-foreground);
     --color-sidebar: var(--sidebar);
     --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
-    --animate-ripple: ripple var(--duration, 2s) ease calc(var(--i, 0) * 0.2s) infinite;
-
+    --animate-ripple: ripple var(--duration, 2s) ease calc(var(--i, 0) * 0.2s)
+        infinite;
 
     @keyframes ripple {
         0%,
