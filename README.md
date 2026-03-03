@@ -1,8 +1,7 @@
 # GitHub Stats Studio
 
 > A beautiful visual editor for creating stunning GitHub statistics cards with real-time preview and customization options.
-
-![GitHub Stats Studio](/public/cover/screenshot.png)
+<img src="http://stats.pphat.top/stats?username=pphatdev&avatar_mode=radar&theme=default&data_border_style=frame" width="100%">
 
 
 [![Nuxt](https://img.shields.io/badge/Nuxt-4.1.3-00DC82?logo=nuxt.js&logoColor=white)](https://nuxt.com/)
