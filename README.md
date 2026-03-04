@@ -1,13 +1,27 @@
 # GitHub Stats Studio
 
 > A beautiful visual editor for creating stunning GitHub statistics cards with real-time preview and customization options.
-<img src="http://stats.pphat.top/stats?username=pphatdev&avatar_mode=radar&theme=default&data_border_style=frame" width="100%">
+<img align='middle' src="https://stats.sophat.top/stats?username=pphatdev&avatar_mode=radar&data_border_style=frame&data_border_frame=out&hide_title=false" style="width:100%"/>
 
+<div align="center" style="margin-top: 20px;">
+
+![Portfolio](https://stats.pphat.top/badge/visitors?username=pphatdev&theme=ocean)
+![Portfolio](https://stats.pphat.top/badge/repositories?username=pphatdev&theme=ocean)
+![Portfolio](https://stats.pphat.top/badge/languages?username=pphatdev&theme=ocean)
+![Portfolio](https://stats.pphat.top/badge/followers?username=pphatdev&theme=ocean)
+![Portfolio](https://stats.pphat.top/badge/total-stars?username=pphatdev&theme=ocean)
+![Portfolio](https://stats.pphat.top/badge/total-contributors?username=pphatdev&theme=ocean)
+
+<br>
 
 [![Nuxt](https://img.shields.io/badge/Nuxt-4.1.3-00DC82?logo=nuxt.js&logoColor=white)](https://nuxt.com/)
 [![Vue](https://img.shields.io/badge/Vue-3.5.28-4FC08D?logo=vue.js&logoColor=white)](https://vuejs.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.2.0-06B6D4?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+</div>
+
+
+
 
 ## ✨ Features
 
