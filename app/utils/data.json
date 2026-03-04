@@ -21,7 +21,7 @@
                                 "title": "Avatar Mode",
                                 "name": "avatar_mode",
                                 "icon": null,
-                                "value": ["none", "radar"]
+                                "value": [ "radar","none"]
                             },
                             {
                                 "title": "Theme",
@@ -255,6 +255,438 @@
                                 "name": "animate",
                                 "icon": null,
                                 "value": ["glow", "wave", "pulse", "none"]
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Badge - Visitors",
+                        "name": "badge-visitors",
+                        "prefix": "badge/visitors",
+                        "icon": "http://stats.pphat.top/badge/visitors?username=pphatdev&theme=ocean&hideFrame=true",
+                        "options": [
+                            {
+                                "title": "Theme",
+                                "name": "theme",
+                                "icon": null,
+                                "value": [
+                                    { "title": "💎 Default", "name": "default" },
+                                    { "title": "🌌 Aurora", "name": "aurora" },
+                                    { "title": "💚 Matrix", "name": "matrix" },
+                                    { "title": "🔥 Inferno", "name": "inferno" },
+                                    { "title": "🌊 Ocean", "name": "ocean" },
+                                    { "title": "💜 Neon", "name": "neon" },
+                                    { "title": "☀️ Solar", "name": "solar" },
+                                    { "title": "🌠 Galaxy", "name": "galaxy" },
+                                    { "title": "🌑 GitHub Dark", "name": "github-dark" }
+                                ]
+                            },
+                            {
+                                "title": "Hide Frame",
+                                "name": "hideFrame",
+                                "icon": null,
+                                "value": false
+                            },
+                            {
+                                "title": "Hide Icon",
+                                "name": "hideIcon",
+                                "icon": null,
+                                "value": false
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Badge - Repositories",
+                        "name": "badge-repositories",
+                        "prefix": "badge/repositories",
+                        "icon": "http://stats.pphat.top/badge/repositories?username=pphatdev&theme=ocean&hideFrame=true",
+                        "options": [
+                            {
+                                "title": "Theme",
+                                "name": "theme",
+                                "icon": null,
+                                "value": [
+                                    { "title": "💎 Default", "name": "default" },
+                                    { "title": "🌌 Aurora", "name": "aurora" },
+                                    { "title": "💚 Matrix", "name": "matrix" },
+                                    { "title": "🔥 Inferno", "name": "inferno" },
+                                    { "title": "🌊 Ocean", "name": "ocean" },
+                                    { "title": "💜 Neon", "name": "neon" },
+                                    { "title": "☀️ Solar", "name": "solar" },
+                                    { "title": "🌠 Galaxy", "name": "galaxy" },
+                                    { "title": "🌑 GitHub Dark", "name": "github-dark" }
+                                ]
+                            },
+                            {
+                                "title": "Hide Frame",
+                                "name": "hideFrame",
+                                "icon": null,
+                                "value": false
+                            },
+                            {
+                                "title": "Hide Icon",
+                                "name": "hideIcon",
+                                "icon": null,
+                                "value": false
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Badge - Organization",
+                        "name": "badge-organization",
+                        "prefix": "badge/organization",
+                        "icon": "http://stats.pphat.top/badge/organization?username=pphatdev&theme=ocean&hideFrame=true",
+                        "options": [
+                            {
+                                "title": "Theme",
+                                "name": "theme",
+                                "icon": null,
+                                "value": [
+                                    { "title": "💎 Default", "name": "default" },
+                                    { "title": "🌌 Aurora", "name": "aurora" },
+                                    { "title": "💚 Matrix", "name": "matrix" },
+                                    { "title": "🔥 Inferno", "name": "inferno" },
+                                    { "title": "🌊 Ocean", "name": "ocean" },
+                                    { "title": "💜 Neon", "name": "neon" },
+                                    { "title": "☀️ Solar", "name": "solar" },
+                                    { "title": "🌠 Galaxy", "name": "galaxy" },
+                                    { "title": "🌑 GitHub Dark", "name": "github-dark" }
+                                ]
+                            },
+                            {
+                                "title": "Hide Frame",
+                                "name": "hideFrame",
+                                "icon": null,
+                                "value": false
+                            },
+                            {
+                                "title": "Hide Icon",
+                                "name": "hideIcon",
+                                "icon": null,
+                                "value": false
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Badge - Languages",
+                        "name": "badge-languages",
+                        "prefix": "badge/languages",
+                        "icon": "http://stats.pphat.top/badge/languages?username=pphatdev&theme=ocean&hideFrame=true",
+                        "options": [
+                            {
+                                "title": "Theme",
+                                "name": "theme",
+                                "icon": null,
+                                "value": [
+                                    { "title": "💎 Default", "name": "default" },
+                                    { "title": "🌌 Aurora", "name": "aurora" },
+                                    { "title": "💚 Matrix", "name": "matrix" },
+                                    { "title": "🔥 Inferno", "name": "inferno" },
+                                    { "title": "🌊 Ocean", "name": "ocean" },
+                                    { "title": "💜 Neon", "name": "neon" },
+                                    { "title": "☀️ Solar", "name": "solar" },
+                                    { "title": "🌠 Galaxy", "name": "galaxy" },
+                                    { "title": "🌑 GitHub Dark", "name": "github-dark" }
+                                ]
+                            },
+                            {
+                                "title": "Hide Frame",
+                                "name": "hideFrame",
+                                "icon": null,
+                                "value": false
+                            },
+                            {
+                                "title": "Hide Icon",
+                                "name": "hideIcon",
+                                "icon": null,
+                                "value": false
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Badge - Followers",
+                        "name": "badge-followers",
+                        "prefix": "badge/followers",
+                        "icon": "http://stats.pphat.top/badge/followers?username=pphatdev&theme=ocean&hideFrame=true",
+                        "options": [
+                            {
+                                "title": "Theme",
+                                "name": "theme",
+                                "icon": null,
+                                "value": [
+                                    { "title": "💎 Default", "name": "default" },
+                                    { "title": "🌌 Aurora", "name": "aurora" },
+                                    { "title": "💚 Matrix", "name": "matrix" },
+                                    { "title": "🔥 Inferno", "name": "inferno" },
+                                    { "title": "🌊 Ocean", "name": "ocean" },
+                                    { "title": "💜 Neon", "name": "neon" },
+                                    { "title": "☀️ Solar", "name": "solar" },
+                                    { "title": "🌠 Galaxy", "name": "galaxy" },
+                                    { "title": "🌑 GitHub Dark", "name": "github-dark" }
+                                ]
+                            },
+                            {
+                                "title": "Hide Frame",
+                                "name": "hideFrame",
+                                "icon": null,
+                                "value": false
+                            },
+                            {
+                                "title": "Hide Icon",
+                                "name": "hideIcon",
+                                "icon": null,
+                                "value": false
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Badge - Total Stars",
+                        "name": "badge-total-stars",
+                        "prefix": "badge/total-stars",
+                        "icon": "http://stats.pphat.top/badge/total-stars?username=pphatdev&theme=ocean&hideFrame=true",
+                        "options": [
+                            {
+                                "title": "Theme",
+                                "name": "theme",
+                                "icon": null,
+                                "value": [
+                                    { "title": "💎 Default", "name": "default" },
+                                    { "title": "🌌 Aurora", "name": "aurora" },
+                                    { "title": "💚 Matrix", "name": "matrix" },
+                                    { "title": "🔥 Inferno", "name": "inferno" },
+                                    { "title": "🌊 Ocean", "name": "ocean" },
+                                    { "title": "💜 Neon", "name": "neon" },
+                                    { "title": "☀️ Solar", "name": "solar" },
+                                    { "title": "🌠 Galaxy", "name": "galaxy" },
+                                    { "title": "🌑 GitHub Dark", "name": "github-dark" }
+                                ]
+                            },
+                            {
+                                "title": "Hide Frame",
+                                "name": "hideFrame",
+                                "icon": null,
+                                "value": false
+                            },
+                            {
+                                "title": "Hide Icon",
+                                "name": "hideIcon",
+                                "icon": null,
+                                "value": false
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Badge - Total Contributors",
+                        "name": "badge-total-contributors",
+                        "prefix": "badge/total-contributors",
+                        "icon": "http://stats.pphat.top/badge/total-contributors?username=pphatdev&theme=ocean&hideFrame=true",
+                        "options": [
+                            {
+                                "title": "Theme",
+                                "name": "theme",
+                                "icon": null,
+                                "value": [
+                                    { "title": "💎 Default", "name": "default" },
+                                    { "title": "🌌 Aurora", "name": "aurora" },
+                                    { "title": "💚 Matrix", "name": "matrix" },
+                                    { "title": "🔥 Inferno", "name": "inferno" },
+                                    { "title": "🌊 Ocean", "name": "ocean" },
+                                    { "title": "💜 Neon", "name": "neon" },
+                                    { "title": "☀️ Solar", "name": "solar" },
+                                    { "title": "🌠 Galaxy", "name": "galaxy" },
+                                    { "title": "🌑 GitHub Dark", "name": "github-dark" }
+                                ]
+                            },
+                            {
+                                "title": "Hide Frame",
+                                "name": "hideFrame",
+                                "icon": null,
+                                "value": false
+                            },
+                            {
+                                "title": "Hide Icon",
+                                "name": "hideIcon",
+                                "icon": null,
+                                "value": false
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Badge - Total Commits",
+                        "name": "badge-total-commits",
+                        "prefix": "badge/total-commits",
+                        "icon": "http://stats.pphat.top/badge/total-commits?username=pphatdev&theme=ocean&hideFrame=true",
+                        "options": [
+                            {
+                                "title": "Theme",
+                                "name": "theme",
+                                "icon": null,
+                                "value": [
+                                    { "title": "💎 Default", "name": "default" },
+                                    { "title": "🌌 Aurora", "name": "aurora" },
+                                    { "title": "💚 Matrix", "name": "matrix" },
+                                    { "title": "🔥 Inferno", "name": "inferno" },
+                                    { "title": "🌊 Ocean", "name": "ocean" },
+                                    { "title": "💜 Neon", "name": "neon" },
+                                    { "title": "☀️ Solar", "name": "solar" },
+                                    { "title": "🌠 Galaxy", "name": "galaxy" },
+                                    { "title": "🌑 GitHub Dark", "name": "github-dark" }
+                                ]
+                            },
+                            {
+                                "title": "Hide Frame",
+                                "name": "hideFrame",
+                                "icon": null,
+                                "value": false
+                            },
+                            {
+                                "title": "Hide Icon",
+                                "name": "hideIcon",
+                                "icon": null,
+                                "value": false
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Badge - Total Code Reviews",
+                        "name": "badge-total-code-reviews",
+                        "prefix": "badge/total-code-reviews",
+                        "icon": "http://stats.pphat.top/badge/total-code-reviews?username=pphatdev&theme=ocean&hideFrame=true",
+                        "options": [
+                            {
+                                "title": "Theme",
+                                "name": "theme",
+                                "icon": null,
+                                "value": [
+                                    { "title": "💎 Default", "name": "default" },
+                                    { "title": "🌌 Aurora", "name": "aurora" },
+                                    { "title": "💚 Matrix", "name": "matrix" },
+                                    { "title": "🔥 Inferno", "name": "inferno" },
+                                    { "title": "🌊 Ocean", "name": "ocean" },
+                                    { "title": "💜 Neon", "name": "neon" },
+                                    { "title": "☀️ Solar", "name": "solar" },
+                                    { "title": "🌠 Galaxy", "name": "galaxy" },
+                                    { "title": "🌑 GitHub Dark", "name": "github-dark" }
+                                ]
+                            },
+                            {
+                                "title": "Hide Frame",
+                                "name": "hideFrame",
+                                "icon": null,
+                                "value": false
+                            },
+                            {
+                                "title": "Hide Icon",
+                                "name": "hideIcon",
+                                "icon": null,
+                                "value": false
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Badge - Total Issues",
+                        "name": "badge-total-issues",
+                        "prefix": "badge/total-issues",
+                        "icon": "http://stats.pphat.top/badge/total-issues?username=pphatdev&theme=ocean&hideFrame=true",
+                        "options": [
+                            {
+                                "title": "Theme",
+                                "name": "theme",
+                                "icon": null,
+                                "value": [
+                                    { "title": "💎 Default", "name": "default" },
+                                    { "title": "🌌 Aurora", "name": "aurora" },
+                                    { "title": "💚 Matrix", "name": "matrix" },
+                                    { "title": "🔥 Inferno", "name": "inferno" },
+                                    { "title": "🌊 Ocean", "name": "ocean" },
+                                    { "title": "💜 Neon", "name": "neon" },
+                                    { "title": "☀️ Solar", "name": "solar" },
+                                    { "title": "🌠 Galaxy", "name": "galaxy" },
+                                    { "title": "🌑 GitHub Dark", "name": "github-dark" }
+                                ]
+                            },
+                            {
+                                "title": "Hide Frame",
+                                "name": "hideFrame",
+                                "icon": null,
+                                "value": false
+                            },
+                            {
+                                "title": "Hide Icon",
+                                "name": "hideIcon",
+                                "icon": null,
+                                "value": false
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Badge - Total Pull Requests",
+                        "name": "badge-total-pull-requests",
+                        "prefix": "badge/total-pull-requests",
+                        "icon": "http://stats.pphat.top/badge/total-pull-requests?username=pphatdev&theme=ocean&hideFrame=true",
+                        "options": [
+                            {
+                                "title": "Theme",
+                                "name": "theme",
+                                "icon": null,
+                                "value": [
+                                    { "title": "💎 Default", "name": "default" },
+                                    { "title": "🌌 Aurora", "name": "aurora" },
+                                    { "title": "💚 Matrix", "name": "matrix" },
+                                    { "title": "🔥 Inferno", "name": "inferno" },
+                                    { "title": "🌊 Ocean", "name": "ocean" },
+                                    { "title": "💜 Neon", "name": "neon" },
+                                    { "title": "☀️ Solar", "name": "solar" },
+                                    { "title": "🌠 Galaxy", "name": "galaxy" },
+                                    { "title": "🌑 GitHub Dark", "name": "github-dark" }
+                                ]
+                            },
+                            {
+                                "title": "Hide Frame",
+                                "name": "hideFrame",
+                                "icon": null,
+                                "value": false
+                            },
+                            {
+                                "title": "Hide Icon",
+                                "name": "hideIcon",
+                                "icon": null,
+                                "value": false
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Badge - Total Joined Years",
+                        "name": "badge-total-joined-years",
+                        "prefix": "badge/total-joined-years",
+                        "icon": "http://stats.pphat.top/badge/total-joined-years?username=pphatdev&theme=ocean&hideFrame=true",
+                        "options": [
+                            {
+                                "title": "Theme",
+                                "name": "theme",
+                                "icon": null,
+                                "value": [
+                                    { "title": "💎 Default", "name": "default" },
+                                    { "title": "🌌 Aurora", "name": "aurora" },
+                                    { "title": "💚 Matrix", "name": "matrix" },
+                                    { "title": "🔥 Inferno", "name": "inferno" },
+                                    { "title": "🌊 Ocean", "name": "ocean" },
+                                    { "title": "💜 Neon", "name": "neon" },
+                                    { "title": "☀️ Solar", "name": "solar" },
+                                    { "title": "🌠 Galaxy", "name": "galaxy" },
+                                    { "title": "🌑 GitHub Dark", "name": "github-dark" }
+                                ]
+                            },
+                            {
+                                "title": "Hide Frame",
+                                "name": "hideFrame",
+                                "icon": null,
+                                "value": false
+                            },
+                            {
+                                "title": "Hide Icon",
+                                "name": "hideIcon",
+                                "icon": null,
+                                "value": false
                             }
                         ]
                     }
