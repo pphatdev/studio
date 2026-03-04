@@ -44,7 +44,7 @@ const handleError = () => {
             :key="imageKey"
             :src="imageUrl"
             :alt="imageAlt"
-            class="max-w-none shadow-lg rounded-lg pointer-events-none"
+            class="max-w-none shadow-lg p-1.5 rounded-lg pointer-events-none"
             referrerpolicy="no-referrer"
             @load="handleLoad"
             @error="handleError"
